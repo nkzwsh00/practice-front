@@ -1,10 +1,21 @@
-const obj1 = {
-    bar: 456,
-    baz: 789,
-};
-const obj2 = {
-    foo: 123,
-    ...obj1,
-};
+type User = {
+    name: string;
+    age: number;
+    premiumUser: boolean;
+}
 
-console.log(obj2); // { foo: 123, bar: 456, baz: 789 }
+const data: string = `
+uhyo,26,1
+John Smith,17,0
+Mary Sue,14,1
+`
+
+//ここに追記
+
+for (const user of users) {
+    if (user.premiumUser) {
+        console.log(`${user.name} (${user.age})はプレミアム会員です`)
+    } else {
+        console.log(`${user.name} (${user.age})はプレミアム会員ではありません`)
+    }
+}
