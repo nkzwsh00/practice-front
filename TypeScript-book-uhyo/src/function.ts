@@ -42,18 +42,18 @@
 // }
 
 // Q3.
-function map<T, U>(array:T[], callback:(value:T ) => U): U[] {
-    const mapped: U[] = [];
-    for (const element of array) {
-        mapped.push(callback(element));
-    }
-    return mapped;
-}
+// function map<T, U>(array:T[], callback:(value:T ) => U): U[] {
+//     const mapped: U[] = [];
+//     for (const element of array) {
+//         mapped.push(callback(element));
+//     }
+//     return mapped;
+// }
 
-const data = [1, 1, 2, 3, 5, 8, 13];
-const result = map(data, (x) => x * 10);
-console.log(result);
+// const data = [1, 1, 2, 3, 5, 8, 13];
+// const result = map(data, (x) => x * 10);
+// console.log(result);
 
-const data2 = [1, -3, -2, 8, 0, -1];
-const result2 = map(data2, (x) => x >= 2);
-console.log(result2);
+// const data2 = [1, -3, -2, 8, 0, -1];
+// const result2 = map(data2, (x) => x >= 2);
+// console.log(result2);

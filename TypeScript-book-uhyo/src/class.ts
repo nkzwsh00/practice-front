@@ -1,63 +1,102 @@
 class User {
-    name: string;
-    #age: number;
-
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.#age = age;
-    }
-
-    public isAdult(): boolean {  
-        return this.#age >= 20;
-    }
+    name: string = "";
+    age: number = 0;
 }
 
-const uhyo = new User("uhyo", 26);
-console.log(uhyo.name);
-console.log(uhyo.isAdult());
+type MyUserConstructor = new () => User;
+const MyUser: MyUserConstructor = User;
+const u = new MyUser();
+console.log(u);
 
+// const uhyo: User = new User();
 
-// class User {
-//     static adminName: string = "uhyo";
-//     static getAdminUser() {
-//         return new User(User.adminName, 26);
-//     }
+// const John: User = {
+//     name: "John Smith",
+//     age: 15,
+//     isAdult: () => true
+// };
+
+// class User<T> {
 //     name: string;
-//     age: number;
+//     #age: number;
+//     readonly data: T;
 
-//     constructor(name: string, age: number) {
+//     constructor(name: string, age: number, data: T) {
 //         this.name = name;
-//         this.age = age;
+//         this.#age = age;
+//         this.data = data;
 //     }
-
-//     isAdult(): boolean {
-//         return this.age >= 20;
+//     public isAdult(): boolean {
+//         return this.#age >= 20;
 //     }
 // }
+// const uhyo = new User<string>("uhyo", 26, "追加データ");
+// const data = uhyo.data;
 
-// console.log(User.adminName);
-// const admin = User.getAdminUser();
-// console.log(admin.age);
-// console.log(admin.isAdult());
+// const John = new User("John Smith", 15, {num: 123});
+// const data2 = John.data;
 
-// const uhyo = new User("uhyo", 26);
-// console.log(uhyo.adminName);
 
 // class User {
-//     name: string = "";
-//     age: number = 0;
+//     name: string;
+//     #age: number;
 
 //     constructor(name: string, age: number) {
 //         this.name = name;
-//         this.age = age;
-        
+//         this.#age = age;
 //     }
 
-//     isAdult(): boolean {
-//         return this.age >= 20;
+//     public isAdult(): boolean {  
+//         return this.#age >= 20;
 //     }
 // }
 
 // const uhyo = new User("uhyo", 26);
 // console.log(uhyo.name);
 // console.log(uhyo.isAdult());
+
+
+// // class User {
+// //     static adminName: string = "uhyo";
+// //     static getAdminUser() {
+// //         return new User(User.adminName, 26);
+// //     }
+// //     name: string;
+// //     age: number;
+
+// //     constructor(name: string, age: number) {
+// //         this.name = name;
+// //         this.age = age;
+// //     }
+
+// //     isAdult(): boolean {
+// //         return this.age >= 20;
+// //     }
+// // }
+
+// // console.log(User.adminName);
+// // const admin = User.getAdminUser();
+// // console.log(admin.age);
+// // console.log(admin.isAdult());
+
+// // const uhyo = new User("uhyo", 26);
+// // console.log(uhyo.adminName);
+
+// // class User {
+// //     name: string = "";
+// //     age: number = 0;
+
+// //     constructor(name: string, age: number) {
+// //         this.name = name;
+// //         this.age = age;
+        
+// //     }
+
+// //     isAdult(): boolean {
+// //         return this.age >= 20;
+// //     }
+// // }
+
+// // const uhyo = new User("uhyo", 26);
+// // console.log(uhyo.name);
+// // console.log(uhyo.isAdult());
