@@ -24,22 +24,44 @@
 // showAge(tama);
 // showAge(uhyo);
 
-type Animal = {
-    species: string;
-    age: number;
-};
+// type Animal = {
+//     species: string;
+//     age: number;
+// };
 
-type Human =  Animal & {
+// type Human =  Animal & {
+//     name: string;
+// };
+
+// const tama: Animal = {
+//     species: 'Felis silvestris catus',
+//     age: 3,
+// };
+
+// const uhyo: Human = {
+//     species: 'homo sapiens sapiens',
+//     age: 26,
+//     name: 'uhyo',
+// }
+
+type Human = {
     name: string;
 };
-
-const tama: Animal = {
-    species: 'Felis silvestris catus',
-    age: 3,
+type Animal = {
+    species: string;
 };
-
-const uhyo: Human = {
-    species: 'homo sapiens sapiens',
-    age: 26,
-    name: 'uhyo',
+function getName(human: Human) {
+    return human.name;
 }
+function getSpecies(animal: Animal) {
+    return animal.species;
+}
+
+const mysteryFunc = Math.random() < 0.5 ? getName : getSpecies;
+
+const uhyo: Human & Animal = {
+    name: 'uhyo',
+    species: 'homo sapiens sapiens'
+}
+const value = mysteryFunc(uhyo);
+console.log(value);
