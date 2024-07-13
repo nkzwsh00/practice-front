@@ -66,15 +66,16 @@
 // const value = mysteryFunc(uhyo);
 // console.log(value);
 
-type Human = {
-    name: string;
-    age?: number;
-};
+// type Human = {
+//     name: string;
+//     age?: number;
+// };
 
-const uhyo: Human = {
-    name: "uhyo",
-    age: 25
-};
-const John: Human = {
-    name: "John Smith"
-};
+// const uhyo: Human = {
+//     name: "uhyo",
+//     age: 25
+// };
+// const John: Human = {
+//     name: "John Smith"
+// };
+
