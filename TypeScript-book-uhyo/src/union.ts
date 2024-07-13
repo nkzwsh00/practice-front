@@ -44,24 +44,37 @@
 //     name: 'uhyo',
 // }
 
+// type Human = {
+//     name: string;
+// };
+// type Animal = {
+//     species: string;
+// };
+// function getName(human: Human) {
+//     return human.name;
+// }
+// function getSpecies(animal: Animal) {
+//     return animal.species;
+// }
+
+// const mysteryFunc = Math.random() < 0.5 ? getName : getSpecies;
+
+// const uhyo: Human & Animal = {
+//     name: 'uhyo',
+//     species: 'homo sapiens sapiens'
+// }
+// const value = mysteryFunc(uhyo);
+// console.log(value);
+
 type Human = {
     name: string;
+    age?: number;
 };
-type Animal = {
-    species: string;
+
+const uhyo: Human = {
+    name: "uhyo",
+    age: 25
 };
-function getName(human: Human) {
-    return human.name;
-}
-function getSpecies(animal: Animal) {
-    return animal.species;
-}
-
-const mysteryFunc = Math.random() < 0.5 ? getName : getSpecies;
-
-const uhyo: Human & Animal = {
-    name: 'uhyo',
-    species: 'homo sapiens sapiens'
-}
-const value = mysteryFunc(uhyo);
-console.log(value);
+const John: Human = {
+    name: "John Smith"
+};
