@@ -1,8 +1,17 @@
 // 7章　力試し
 
 import {readFileSync} from "fs";
+import path from "path";
+import {fileURLToPath} from "url";
 
-const text = readFileSync("uhyo.txt", "utf-8");
+const __currentPath = fileURLToPath(import.meta.url);
+console.log(__currentPath);
+const __currentDirectory = path.dirname(__currentPath);
+console.log(__currentDirectory);
+const __filePath = path.join(__currentDirectory, "../uhyo.txt");
+console.log(__filePath);
+
+const text = readFileSync(__filePath, "utf-8");
 console.log(text);
 
 const textLength:number = text.length;
