@@ -62,15 +62,28 @@
 // 8章　力試し
 
 // import {readFileSync} from "fs";
-import {readFile} from "fs/promises";
 import path from "path";
+import {readFile} from "fs/promises";
 import {fileURLToPath} from "url";
+
+const sleep = (duration: number) => {
+    return new Promise<void>((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+
+const errorAfter1ms = async () => {
+    await sleep(1);
+    // throw new Error("Time out!");
+    return "a";
+}
 
 const __currentPath = fileURLToPath(import.meta.url);
 const __currentDirectory = path.dirname(__currentPath);
 const __filePath = path.join(__currentDirectory, "../uhyo.txt");
 
-const text = await readFile(__filePath, "utf-8");
+// const text = await readFile(__filePath, "utf-8");
+const text = await Promise.race([readFile(__filePath, "utf-8"), errorAfter1ms()]);
 
 const textLength:number = text.length;
 let count:number = 0;
