@@ -46,4 +46,5 @@ ul {
   padding-inline-start: 20px;
 }
 
-img { height: 200px; }
+body { min-height: 120px; }
+.avatar { margin: 20px; border-radius: 50%; }
