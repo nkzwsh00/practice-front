@@ -46,12 +46,15 @@ ul {
   padding-inline-start: 20px;
 }
 
-ul { list-style-type: none; padding: 0px 10px; }
-li {
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: center;
+body {
+  text-align: center;
 }
-img { width: 100px; height: 100px; border-radius: 50%; }
+p {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+}
+hr {
+  margin: 0 120px 0 120px;
+  border: 1px dashed #45c3d8;
+}

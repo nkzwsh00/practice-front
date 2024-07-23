@@ -1,28 +1,22 @@
-import { recipes } from './data.js';
+const poem = {
+  lines: [
+    'I write, erase, rewrite',
+    'Erase again, and then',
+    'A poppy blooms.'
+  ]
+};
 
-function Recipe({ id, name, ingredients }) {
+export default function Poem() {
   return (
-    <div key={id}>
-      <h2>{name}</h2>
-      <ul>
-        {ingredients.map(ingredient =>
-          <li key={ingredient}>
-            {ingredient}
-          </li>
-        )}
-      </ul>
-    </div>
-  );
-}
-
-export default function RecipeList() {
-  return (
-    <div>
-      <h1>Recipes</h1>
-      {recipes.map(recipe =>
-        <Recipe {...recipe} key={recipe.id}
-        />
+    <article>
+      {poem.lines.map((line, index) =>
+        <div>
+          {index > 0 && <hr />}
+          <p key={index}>
+            {line}
+          </p>
+        </div>
       )}
-    </div>
+    </article>
   );
 }
