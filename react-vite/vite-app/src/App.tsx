@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './Counter'
+import Counter from './Counter'
 
 const title = import.meta.env.VITE_APP_TITLE
 console.dir(import.meta.env)
@@ -20,6 +22,7 @@ function App() {
         </a>
       </div>
       <h1>{title}</h1>
+      <Counter />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
