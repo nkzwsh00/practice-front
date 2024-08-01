@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function EditProfile(): JSX.Element {
+export function EditProfile(): JSX.Element {
   const [isEditting, setIsEditting] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("Jane");
   const [lastName, setLastName] = useState<string>("Jacobs");
