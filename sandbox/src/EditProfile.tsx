@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
-export function EditProfile(): JSX.Element {
+export const EditProfile: FC = () => {
   const [isEditting, setIsEditting] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("Jane");
   const [lastName, setLastName] = useState<string>("Jacobs");
@@ -49,4 +49,4 @@ export function EditProfile(): JSX.Element {
       </p>
     </form>
   );
-}
+};
