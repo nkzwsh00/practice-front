@@ -3,8 +3,8 @@ import { typeLetter } from "./data";
 type LetterProps = {
   letter: typeLetter;
   isHighlighted: boolean;
-  onHover: (letter: typeLetter) => void;
-  onToggleStar: (starred: { id: number }) => void;
+  onHover: (id: number) => void;
+  onToggleStar: (starredId: number) => void;
 };
 
 export default function Letter({
@@ -17,15 +17,15 @@ export default function Letter({
     <li
       className={isHighlighted ? "highlighted" : ""}
       onFocus={() => {
-        onHover(letter);
+        onHover(letter.id);
       }}
       onPointerMove={() => {
-        onHover(letter);
+        onHover(letter.id);
       }}
     >
       <button
         onClick={() => {
-          onToggleStar(letter);
+          onToggleStar(letter.id);
         }}
       >
         {letter.isStarred ? "Unstar" : "Star"}

@@ -1,21 +1,19 @@
 import { useState } from "react";
-import { initialLetters, typeLetter } from "./data";
+import { initialLetters } from "./data";
 import Letter from "./Letter";
 
 export default function MailClient() {
   const [letters, setLetters] = useState(initialLetters);
-  const [highlightedLetter, setHighlightedLetter] = useState<typeLetter | null>(
-    null
-  );
+  const [highlightedId, setHighlightedId] = useState<number | null>(null);
 
-  function handleHover(letter: typeLetter) {
-    setHighlightedLetter(letter);
+  function handleHover(letterId: number) {
+    setHighlightedId(letterId);
   }
 
-  function handleStar(starred: { id: number }) {
+  function handleStar(starredId: number) {
     setLetters(
       letters.map((letter) => {
-        if (letter.id === starred.id) {
+        if (letter.id === starredId) {
           return {
             ...letter,
             isStarred: !letter.isStarred,
@@ -35,7 +33,7 @@ export default function MailClient() {
           <Letter
             key={letter.id}
             letter={letter}
-            isHighlighted={letter === highlightedLetter}
+            isHighlighted={letter.id === highlightedId}
             onHover={handleHover}
             onToggleStar={handleStar}
           />
