@@ -1,9 +1,15 @@
-import { useState } from "react";
-
-export default function PackingList({ items, onChangeItem, onDeleteItem }) {
+export default function PackingList({
+  items,
+  onChangeItem,
+  onDeleteItem,
+}: {
+  items: ItemType[];
+  onChangeItem: (item: ItemType) => void;
+  onDeleteItem: (id: number) => void;
+}) {
   return (
     <ul>
-      {items.map((item) => (
+      {items.map((item: ItemType) => (
         <li key={item.id}>
           <label>
             <input
@@ -24,3 +30,9 @@ export default function PackingList({ items, onChangeItem, onDeleteItem }) {
     </ul>
   );
 }
+
+type ItemType = {
+  id: number;
+  packed: boolean;
+  title: string;
+};

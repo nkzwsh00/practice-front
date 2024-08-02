@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function AddItem({ onAddItem }) {
+export default function AddItem({
+  onAddItem,
+}: {
+  onAddItem: (item: string) => void;
+}) {
   const [title, setTitle] = useState("");
   return (
     <>
