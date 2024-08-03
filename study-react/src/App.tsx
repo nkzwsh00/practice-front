@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { foods, filterItems } from "./data.js";
+import { foods, Food, filterItems } from "./data";
 
 export default function FilterableList() {
   return (
@@ -11,31 +11,29 @@ export default function FilterableList() {
   );
 }
 
-function SearchBar() {
-  const [query, setQuery] = useState("");
+const SearchBar = () => {
+  const [query, setQuery] = useState<string>("");
 
-  function handleChange(e) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  }
+  };
 
   return (
     <label>
       Search: <input value={query} onChange={handleChange} />
     </label>
   );
-}
+};
 
-function List({ items }) {
-  return (
-    <table>
-      <tbody>
-        {items.map((food) => (
-          <tr key={food.id}>
-            <td>{food.name}</td>
-            <td>{food.description}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+const List = ({ items }: { items: Food[] }) => (
+  <table>
+    <tbody>
+      {items.map((food: Food) => (
+        <tr key={food.id}>
+          <td>{food.name}</td>
+          <td>{food.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);

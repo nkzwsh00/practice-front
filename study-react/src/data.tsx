@@ -1,7 +1,9 @@
-export function filterItems(items, query) {
+export function filterItems(items: Food[], query: string) {
   query = query.toLowerCase();
-  return items.filter((item) =>
-    item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
+  return items.filter((item: Food) =>
+    item.name
+      .split(" ")
+      .some((word: string) => word.toLowerCase().startsWith(query))
   );
 }
 
@@ -37,3 +39,9 @@ export const foods = [
       "Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch",
   },
 ];
+
+export type Food = {
+  id: number;
+  name: string;
+  description: string;
+};
