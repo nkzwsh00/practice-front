@@ -1,21 +1,24 @@
 import React, { FC, useState } from "react";
 
 export default function SyncedInputs() {
-  return (
-    <>
-      <Input label="First input" />
-      <Input label="Second input" />
-    </>
-  );
-}
-
-const Input: FC<{ label: string }> = ({ label }) => {
   const [text, setText] = useState<string>("");
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setText(e.target.value);
   }
 
+  return (
+    <>
+      <Input label="First input" text={text} handleChange={handleChange} />
+      <Input label="Second input" text={text} handleChange={handleChange} />
+    </>
+  );
+}
+
+const Input: FC<{
+  label: string;
+  text: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ label, text, handleChange }) => {
   return (
     <label>
       {label} <input value={text} onChange={handleChange} />
