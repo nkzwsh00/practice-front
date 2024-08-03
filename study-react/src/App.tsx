@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { FC, useState } from "react";
 
 export default function SyncedInputs() {
   return (
@@ -9,10 +9,10 @@ export default function SyncedInputs() {
   );
 }
 
-const Input = ({ label }: { label: string }) => {
-  const [text, setText] = useState("");
+const Input: FC<{ label: string }> = ({ label }) => {
+  const [text, setText] = useState<string>("");
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setText(e.target.value);
   }
 
