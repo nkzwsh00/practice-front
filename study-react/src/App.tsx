@@ -9,10 +9,10 @@ export default function SyncedInputs() {
   );
 }
 
-function Input({ label }) {
+const Input = ({ label }: { label: string }) => {
   const [text, setText] = useState("");
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setText(e.target.value);
   }
 
@@ -21,4 +21,4 @@ function Input({ label }) {
       {label} <input value={text} onChange={handleChange} />
     </label>
   );
-}
+};
