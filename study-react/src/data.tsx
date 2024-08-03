@@ -1,11 +1,11 @@
-export function filterItems(items: Food[], query: string) {
+export const filterItems = (items: Food[], query: string): Food[] => {
   query = query.toLowerCase();
   return items.filter((item: Food) =>
     item.name
       .split(" ")
       .some((word: string) => word.toLowerCase().startsWith(query))
   );
-}
+};
 
 export const foods = [
   {

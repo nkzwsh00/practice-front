@@ -2,22 +2,30 @@ import { useState } from "react";
 import { foods, Food, filterItems } from "./data";
 
 export default function FilterableList() {
+  const [query, setQuery] = useState<string>("");
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <>
-      <SearchBar />
+      <SearchBar query={query} handleChange={handleChange} />
       <hr />
-      <List items={foods} />
+      <List items={filterItems(foods, query)} />
     </>
   );
 }
 
-const SearchBar = () => {
-  const [query, setQuery] = useState<string>("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
-
+const SearchBar = ({
+  query,
+  handleChange,
+}: {
+  query: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}) => {
   return (
     <label>
       Search: <input value={query} onChange={handleChange} />
