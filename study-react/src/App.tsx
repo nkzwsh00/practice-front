@@ -1,53 +1,38 @@
 import { useState } from "react";
+import ContactList from "./ContactList";
+import EditContact from "./EditContact";
 
-type FieldProps = {
-  label: string;
-};
+export default function ContactManager() {
+  const [contacts, setContacts] = useState(initialContacts);
+  const [selectedId, setSelectedId] = useState(0);
+  const selectedContact = contacts.find((c) => c.id === selectedId);
 
-const App = (): JSX.Element => {
-  const [reverse, setReverse] = useState<boolean>(false);
-  let checkbox = (
-    <label>
-      <input
-        type="checkbox"
-        checked={reverse}
-        onChange={(e) => setReverse(e.target.checked)}
-      />
-      Reverse order
-    </label>
-  );
-  if (reverse) {
-    return (
-      <>
-        <Field key="Last name" label="Last name" />
-        <Field key="First name" label="First name" />
-        {checkbox}
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Field key="First name" label="First name" />
-        <Field key="Last name" label="Last name" />
-        {checkbox}
-      </>
-    );
+  function handleSave(updatedData) {
+    const nextContacts = contacts.map((c) => {
+      if (c.id === updatedData.id) {
+        return updatedData;
+      } else {
+        return c;
+      }
+    });
+    setContacts(nextContacts);
   }
-};
 
-const Field = ({ label }: FieldProps): JSX.Element => {
-  const [text, setText] = useState<string>("");
   return (
-    <label>
-      {label}:{" "}
-      <input
-        type="text"
-        value={text}
-        placeholder={label}
-        onChange={(e) => setText(e.target.value)}
+    <div>
+      <ContactList
+        contacts={contacts}
+        selectedId={selectedId}
+        onSelect={(id) => setSelectedId(id)}
       />
-    </label>
+      <hr />
+      <EditContact initialData={selectedContact} onSave={handleSave} />
+    </div>
   );
-};
+}
 
-export default App;
+const initialContacts = [
+  { id: 0, name: "Taylor", email: "taylor@mail.com" },
+  { id: 1, name: "Alice", email: "alice@mail.com" },
+  { id: 2, name: "Bob", email: "bob@mail.com" },
+];
