@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-export default function App() {
-  const [reverse, setReverse] = useState(false);
+type FieldProps = {
+  label: string;
+};
+
+const App = (): JSX.Element => {
+  const [reverse, setReverse] = useState<boolean>(false);
   let checkbox = (
     <label>
       <input
@@ -29,10 +33,10 @@ export default function App() {
       </>
     );
   }
-}
+};
 
-function Field({ label }) {
-  const [text, setText] = useState("");
+const Field = ({ label }: FieldProps): JSX.Element => {
+  const [text, setText] = useState<string>("");
   return (
     <label>
       {label}:{" "}
@@ -44,4 +48,6 @@ function Field({ label }) {
       />
     </label>
   );
-}
+};
+
+export default App;
