@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function App() {
-  const [showHint, setShowHint] = useState(false);
+  const [showHint, setShowHint] = useState<boolean>(false);
   if (showHint) {
     return (
       <div>
@@ -33,7 +33,7 @@ export default function App() {
   );
 }
 
-function Form() {
-  const [text, setText] = useState("");
+const Form = () => {
+  const [text, setText] = useState<string>("");
   return <textarea value={text} onChange={(e) => setText(e.target.value)} />;
-}
+};
