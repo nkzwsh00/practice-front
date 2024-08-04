@@ -1,14 +1,15 @@
 import { useState } from "react";
-import ContactList from "./ContactList";
+import { Contact, ContactList } from "./ContactList";
 import EditContact from "./EditContact";
 
 export default function ContactManager() {
-  const [contacts, setContacts] = useState(initialContacts);
-  const [selectedId, setSelectedId] = useState(0);
-  const selectedContact = contacts.find((c) => c.id === selectedId);
+  const [contacts, setContacts] = useState<Contact[]>(initialContacts);
+  const [selectedId, setSelectedId] = useState<number>(0);
+  const selectedContact =
+    contacts.find((c: Contact) => c.id === selectedId) ?? null;
 
-  function handleSave(updatedData) {
-    const nextContacts = contacts.map((c) => {
+  const handleSave = (updatedData: Contact) => {
+    const nextContacts = contacts.map((c: Contact) => {
       if (c.id === updatedData.id) {
         return updatedData;
       } else {
@@ -16,14 +17,14 @@ export default function ContactManager() {
       }
     });
     setContacts(nextContacts);
-  }
+  };
 
   return (
     <div>
       <ContactList
         contacts={contacts}
         selectedId={selectedId}
-        onSelect={(id) => setSelectedId(id)}
+        onSelect={(id: number) => setSelectedId(id)}
       />
       <hr />
       <EditContact initialData={selectedContact} onSave={handleSave} />
@@ -31,7 +32,7 @@ export default function ContactManager() {
   );
 }
 
-const initialContacts = [
+const initialContacts: Contact[] = [
   { id: 0, name: "Taylor", email: "taylor@mail.com" },
   { id: 1, name: "Alice", email: "alice@mail.com" },
   { id: 2, name: "Bob", email: "bob@mail.com" },
