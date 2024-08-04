@@ -19,16 +19,16 @@ const App = (): JSX.Element => {
   if (reverse) {
     return (
       <>
-        <Field label="Last name" />
-        <Field label="First name" />
+        <Field key="Last name" label="Last name" />
+        <Field key="First name" label="First name" />
         {checkbox}
       </>
     );
   } else {
     return (
       <>
-        <Field label="First name" />
-        <Field label="Last name" />
+        <Field key="First name" label="First name" />
+        <Field key="Last name" label="Last name" />
         {checkbox}
       </>
     );
