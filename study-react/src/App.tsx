@@ -1,31 +1,36 @@
 import { useState } from "react";
 
-export default function Gallery() {
-  const [index, setIndex] = useState(0);
-  const hasNext = index < images.length - 1;
+type Image = {
+  place: string;
+  src: string;
+};
 
-  function handleClick() {
+const Gallery = () => {
+  const [index, setIndex] = useState<number>(0);
+  const hasNext: boolean = index < images.length - 1;
+
+  const handleClick = () => {
     if (hasNext) {
       setIndex(index + 1);
     } else {
       setIndex(0);
     }
-  }
+  };
 
-  let image = images[index];
+  const image: Image | undefined = images[index];
   return (
     <>
       <button onClick={handleClick}>Next</button>
       <h3>
         Image {index + 1} of {images.length}
       </h3>
-      <img src={image.src} />
-      <p>{image.place}</p>
+      {image && <img src={image.src} />}
+      {image && <p>{image.place}</p>}
     </>
   );
-}
+};
 
-let images = [
+const images: Image[] = [
   {
     place: "Penang, Malaysia",
     src: "https://i.imgur.com/FJeJR8M.jpg",
@@ -55,3 +60,5 @@ let images = [
     src: "https://i.imgur.com/3aIiwfm.jpg",
   },
 ];
+
+export default Gallery;
