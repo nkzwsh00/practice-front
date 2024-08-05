@@ -1,7 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function Contact({ contact }) {
-  const [expanded, setExpanded] = useState(false);
+export type ContactProps = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+export const Contact: React.FC<ContactProps> = (contact) => {
+  const [expanded, setExpanded] = useState<boolean>(false);
+
   return (
     <>
       <p>
@@ -21,4 +28,4 @@ export default function Contact({ contact }) {
       </button>
     </>
   );
-}
+};
