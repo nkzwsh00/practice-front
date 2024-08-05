@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function Gallery() {
+  const [index, setIndex] = useState(0);
+  const hasNext = index < images.length - 1;
 
+  function handleClick() {
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
+  }
+
+  let image = images[index];
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={handleClick}>Next</button>
+      <h3>
+        Image {index + 1} of {images.length}
+      </h3>
+      <img src={image.src} />
+      <p>{image.place}</p>
     </>
-  )
+  );
 }
 
-export default App
+let images = [
+  {
+    place: "Penang, Malaysia",
+    src: "https://i.imgur.com/FJeJR8M.jpg",
+  },
+  {
+    place: "Lisbon, Portugal",
+    src: "https://i.imgur.com/dB2LRbj.jpg",
+  },
+  {
+    place: "Bilbao, Spain",
+    src: "https://i.imgur.com/z08o2TS.jpg",
+  },
+  {
+    place: "Valparaíso, Chile",
+    src: "https://i.imgur.com/Y3utgTi.jpg",
+  },
+  {
+    place: "Schwyz, Switzerland",
+    src: "https://i.imgur.com/JBbMpWY.jpg",
+  },
+  {
+    place: "Prague, Czechia",
+    src: "https://i.imgur.com/QwUKKmF.jpg",
+  },
+  {
+    place: "Ljubljana, Slovenia",
+    src: "https://i.imgur.com/3aIiwfm.jpg",
+  },
+];
