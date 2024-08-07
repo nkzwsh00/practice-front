@@ -1,12 +1,26 @@
 import { useReducer } from "react";
-import Chat from "./Chat.js";
-import ContactList from "./ContactList.js";
+import Chat from "./Chat";
+import ContactList from "./ContactList";
 import { initialState, messengerReducer } from "./messengerReducer";
 
-export default function Messenger() {
-  const [state, dispatch] = useReducer(messengerReducer, initialState);
+type Contact = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type State = {
+  selectedId: number;
+  message: string;
+};
+
+const Messenger = () => {
+  const [state, dispatch] = useReducer<State, any>(
+    messengerReducer,
+    initialState
+  );
   const message = state.message;
-  const contact = contacts.find((c) => c.id === state.selectedId);
+  const contact = contacts.find((c: Contact) => c.id === state.selectedId);
   return (
     <div>
       <ContactList
@@ -22,10 +36,12 @@ export default function Messenger() {
       />
     </div>
   );
-}
+};
 
-const contacts = [
+const contacts: Contact[] = [
   { id: 0, name: "Taylor", email: "taylor@mail.com" },
   { id: 1, name: "Alice", email: "alice@mail.com" },
   { id: 2, name: "Bob", email: "bob@mail.com" },
 ];
+
+export default Messenger;
