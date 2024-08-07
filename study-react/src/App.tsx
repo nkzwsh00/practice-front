@@ -19,7 +19,7 @@ const Messenger = () => {
     messengerReducer,
     initialState
   );
-  const message = state.message;
+  const message = state.message[state.selectedId];
   const contact = contacts.find((c: Contact) => c.id === state.selectedId);
   return (
     <div>
