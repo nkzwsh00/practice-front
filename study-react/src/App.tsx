@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { places } from "./data.js";
+import { getImageUrl } from "./utils.js";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  const [isLarge, setIsLarge] = useState(false);
+  const imageSize = isLarge ? 150 : 100;
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={isLarge}
+          onChange={(e) => {
+            setIsLarge(e.target.checked);
+          }}
+        />
+        Use large images
+      </label>
+      <hr />
+      <List imageSize={imageSize} />
     </>
-  )
+  );
 }
 
-export default App
+function List({ imageSize }) {
+  const listItems = places.map((place) => (
+    <li key={place.id}>
+      <Place place={place} imageSize={imageSize} />
+    </li>
+  ));
+  return <ul>{listItems}</ul>;
+}
+
+function Place({ place, imageSize }) {
+  return (
+    <>
+      <PlaceImage place={place} imageSize={imageSize} />
+      <p>
+        <b>{place.name}</b>
+        {": " + place.description}
+      </p>
+    </>
+  );
+}
+
+function PlaceImage({ place, imageSize }) {
+  return (
+    <img
+      src={getImageUrl(place)}
+      alt={place.name}
+      width={imageSize}
+      height={imageSize}
+    />
+  );
+}
