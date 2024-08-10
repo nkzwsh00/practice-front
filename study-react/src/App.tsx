@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { places } from "./data.js";
-import { getImageUrl } from "./utils.js";
+import { useState, useContext } from "react";
+import { places } from "./data";
+import { getImageUrl } from "./utils";
+import { ImageSizeContext } from "./Context.js";
 
 export default function App() {
   const [isLarge, setIsLarge] = useState(false);
-  const imageSize = isLarge ? 150 : 100;
   return (
     <>
       <label>
@@ -18,24 +18,26 @@ export default function App() {
         Use large images
       </label>
       <hr />
-      <List imageSize={imageSize} />
+      <ImageSizeContext.Provider value={isLarge ? 150 : 100}>
+        <List />
+      </ImageSizeContext.Provider>
     </>
   );
 }
 
-function List({ imageSize }) {
+function List() {
   const listItems = places.map((place) => (
     <li key={place.id}>
-      <Place place={place} imageSize={imageSize} />
+      <Place place={place} />
     </li>
   ));
   return <ul>{listItems}</ul>;
 }
 
-function Place({ place, imageSize }) {
+function Place({ place }) {
   return (
     <>
-      <PlaceImage place={place} imageSize={imageSize} />
+      <PlaceImage place={place} />
       <p>
         <b>{place.name}</b>
         {": " + place.description}
@@ -44,7 +46,8 @@ function Place({ place, imageSize }) {
   );
 }
 
-function PlaceImage({ place, imageSize }) {
+function PlaceImage({ place }) {
+  const imageSize = useContext(ImageSizeContext);
   return (
     <img
       src={getImageUrl(place)}
