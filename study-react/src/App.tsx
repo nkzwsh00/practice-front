@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <nav>
-        <button onClick={forcusHandle}>Search</button>
+        <button onClick={() => forcusHandle()}>Search</button>
       </nav>
       <input ref={inputRef} placeholder="Looking for something?" />
     </>
