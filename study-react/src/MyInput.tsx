@@ -8,7 +8,7 @@ export default function MyInput({ shouldFocus, value, onChange }) {
     if (shouldFocus) {
       ref.current.focus();
     }
-  }, []);
+  }, [shouldFocus]);
 
   return <input ref={ref} value={value} onChange={onChange} />;
 }
