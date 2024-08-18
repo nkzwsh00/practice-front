@@ -8,8 +8,8 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div>
+      <h1 className="text-3xl font-bold underline p-2 m-2 ">Hello world!</h1>
+      <div className="p-2 m-2 container">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -19,7 +19,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => setCount((count) => count + 1)}
+        >
           count is {count}
         </button>
         <p>
