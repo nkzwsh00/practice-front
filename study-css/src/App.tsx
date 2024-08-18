@@ -2,6 +2,8 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Contents } from "./Contents";
+import { PrimaryButton } from "./PrimaryButton";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +34,25 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <br />
+      <Contents />
+      <div className="py-8 px-8 max-w-sm mx-auto bg-white rouded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+        <img
+          className="block mx-auto h-24 rouded-full sm:mx-0 sm:shrink-o"
+          src="/vite.svg"
+          alt="Vite logo"
+        />
+        <div className="text-center space-y-2 sm:text-left">
+          <div className="space-y-0.5">
+            <p className="text-lg text-black font-semibold">Erin Lindford</p>
+            <p className="text-slate-500 font-medium">Product Engineer</p>
+          </div>
+          <button className="px-4 py-1 text-sm text-purple-600 font-semibold rouded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outlin-none focus:ring-2 focus:ring-puple-600 focus:ring-offset-2">
+            Message
+          </button>
+        </div>
+      </div>
+      <PrimaryButton>Click me</PrimaryButton>
     </>
   );
 }
