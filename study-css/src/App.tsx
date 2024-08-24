@@ -52,6 +52,11 @@ function App() {
           </button>
         </div>
       </div>
+      <div className="flex p-2">
+        <button className="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ">
+          Save changes
+        </button>
+      </div>
       <PrimaryButton>Click me</PrimaryButton>
     </>
   );
