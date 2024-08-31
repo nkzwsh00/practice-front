@@ -63,8 +63,8 @@ function App() {
           <h1>Sample flexbox example</h1>
         </header>
 
-        <section className="flex">
-          <article>
+        <section className="flex flex-row flex-nowrap">
+          <article className="basis-1/4">
             <h2>First article</h2>
 
             <p>
@@ -77,7 +77,7 @@ function App() {
             </p>
           </article>
 
-          <article>
+          <article className="basis-1/2">
             <h2>Second article</h2>
 
             <p>
@@ -90,7 +90,7 @@ function App() {
             </p>
           </article>
 
-          <article>
+          <article className="basis-1/4">
             <h2>Third article</h2>
 
             <p>
