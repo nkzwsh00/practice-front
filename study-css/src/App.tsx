@@ -63,7 +63,7 @@ function App() {
           <h1>Sample flexbox example</h1>
         </header>
 
-        <section className="flex flex-row flex-nowrap items-stretch justify-items-center">
+        <section className="flex flex-row p-3 gap-4 flex-nowrap items-stretch justify-items-center">
           <article className="basis-1/4">
             <h2>First article</h2>
 
@@ -77,26 +77,24 @@ function App() {
             </p>
           </article>
 
-          <article className="basis-1/2">
-            <table className="table-auto">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Email</th>
+          <table className="basis-1/2 table-auto">
+            <thead className="border-y border-slate-300 bg-gray-100">
+              <tr className="">
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr className="border-y border-slate-300" key={index}>
+                  <td>{item.name}</td>
+                  <td>{item.age}</td>
+                  <td>{item.email}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.name}</td>
-                    <td>{item.age}</td>
-                    <td>{item.email}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </article>
+              ))}
+            </tbody>
+          </table>
 
           <article className="basis-1/4">
             <h2>Third article</h2>
