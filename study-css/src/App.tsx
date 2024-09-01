@@ -63,7 +63,7 @@ function App() {
           <h1>Sample flexbox example</h1>
         </header>
 
-        <section className="flex flex-row flex-nowrap">
+        <section className="flex flex-row flex-nowrap items-stretch justify-items-center">
           <article className="basis-1/4">
             <h2>First article</h2>
 
@@ -78,16 +78,24 @@ function App() {
           </article>
 
           <article className="basis-1/2">
-            <h2>Second article</h2>
-
-            <p>
-              Tacos actually microdosing, pour-over semiotics banjo chicharrones
-              retro fanny pack portland everyday carry vinyl typewriter. Tacos
-              PBR&B pork belly, everyday carry ennui pickled sriracha normcore
-              hashtag polaroid single-origin coffee cold-pressed. PBR&B tattooed
-              trust fund twee, leggings salvia iPhone photo booth health goth
-              gastropub hammock.
-            </p>
+            <table className="table-auto">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.age}</td>
+                    <td>{item.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </article>
 
           <article className="basis-1/4">
@@ -117,3 +125,15 @@ function App() {
 }
 
 export default App;
+
+type data = {
+  name: string;
+  age: number;
+  email: string;
+};
+
+const data: data[] = [
+  { name: "John", age: 23, email: "" },
+  { name: "Jane", age: 25, email: "" },
+  { name: "Joe", age: 22, email: "" },
+];
