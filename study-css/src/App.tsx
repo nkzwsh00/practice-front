@@ -77,24 +77,32 @@ function App() {
             </p>
           </article>
 
-          <table className="basis-1/2 table-auto">
-            <thead className="border-y border-slate-300 bg-gray-100">
-              <tr className="">
-                <th>Name</th>
-                <th>Age</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => (
-                <tr className="border-y border-slate-300" key={index}>
-                  <td>{item.name}</td>
-                  <td>{item.age}</td>
-                  <td>{item.email}</td>
+          <div className="flex flex-col basis-1/2">
+            <caption className="flex caption-top justify-end">
+              Table caption
+            </caption>
+            <table className="flex-col">
+              <thead className="border-y border-slate-300 bg-gray-100">
+                <tr className="">
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Email</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr className="border-y border-slate-300" key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.age}</td>
+                    <td>{item.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <caption className="flex caption-bottom justify-center">
+              end
+            </caption>
+          </div>
 
           <article className="basis-1/4">
             <h2>Third article</h2>
