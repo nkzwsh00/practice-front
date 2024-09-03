@@ -7,6 +7,15 @@ import { PrimaryButton } from "./PrimaryButton";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [users, setUsers] = useState(data);
+  const [formData, setFormData] = useState({ name: "", age: "", email: "" });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -59,10 +68,40 @@ function App() {
       </div>
       <PrimaryButton>Click me</PrimaryButton>
       <div className="">
-        <header>
-          <h1>Sample flexbox example</h1>
-        </header>
-
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          placeholder="Enter your name"
+          className="border border-slate-300 p-2 m-2"
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="age"
+          value={formData.age}
+          placeholder="Enter your age"
+          className="border border-slate-300 p-2 m-2"
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          placeholder="Enter your email"
+          className="border border-slate-300 p-2 m-2"
+          onChange={handleChange}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            setUsers([...users, { ...formData, age: parseInt(formData.age) }]);
+            // formDataを初期化する
+            setFormData({ name: "", age: "", email: "" });
+          }}
+        >
+          ADD
+        </button>
         <section className="flex flex-row p-3 gap-4 flex-nowrap items-stretch justify-items-center">
           <article className="basis-1/4">
             <h2>First article</h2>
@@ -90,7 +129,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, index) => (
+                {users.map((item, index) => (
                   <tr className="border-y border-slate-300" key={index}>
                     <td>{item.name}</td>
                     <td>{item.age}</td>
@@ -139,7 +178,7 @@ type data = {
 };
 
 const data: data[] = [
-  { name: "John", age: 23, email: "" },
-  { name: "Jane", age: 25, email: "" },
-  { name: "Joe", age: 22, email: "" },
+  { name: "John", age: 23, email: "hoge@jp" },
+  { name: "Jane", age: 25, email: "fuga@jp" },
+  { name: "Joe", age: 22, email: "piyo@jp" },
 ];
