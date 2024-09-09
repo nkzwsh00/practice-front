@@ -5,7 +5,7 @@ import "./App.css";
 import { Contents } from "./Contents";
 import { PrimaryButton } from "./PrimaryButton";
 
-function App() {
+export const App = () => {
   const [count, setCount] = useState(0);
   const [users, setUsers] = useState(data);
   const [formData, setFormData] = useState({ name: "", age: "", email: "" });
@@ -167,9 +167,7 @@ function App() {
       </div>
     </>
   );
-}
-
-export default App;
+};
 
 type data = {
   name: string;
