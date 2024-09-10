@@ -1,9 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 export const Layout = () => {
   return (
     <>
-      <h1 className="bg-blue-400 text-white">header</h1>
+      <div className="bg-blue-400 text-white">
+        <h1>header</h1>
+        <nav>
+          <Link to="/main">Main</Link>
+          <Link to="/about">About</Link>
+        </nav>
+      </div>
       <Outlet />
     </>
   );
