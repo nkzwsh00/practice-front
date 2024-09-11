@@ -3,9 +3,9 @@ import { Outlet, Link } from "react-router-dom";
 export const Layout = () => {
   return (
     <>
-      <div className="bg-blue-400 text-white">
+      <div className="flex justify-between gap-1 bg-blue-400 text-white">
         <h1>header</h1>
-        <nav>
+        <nav className="flex flex-col">
           <Link to="/main">Main</Link>
           <Link to="/about">About</Link>
         </nav>
