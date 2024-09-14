@@ -6,6 +6,7 @@ import { Layout } from "./Layout.tsx";
 import "./index.css";
 import ErrorPage from "./ErrorPage.tsx";
 import { Page1 } from "./Page1.tsx";
+import { Sanmoku } from "./Sanmoku.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <Page1 />,
+      },
+      {
+        path: "/sanmoku",
+        element: <Sanmoku />,
       },
     ],
   },
