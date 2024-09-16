@@ -8,6 +8,7 @@ export const Layout = () => {
         <nav className="flex flex-col">
           <Link to="/main">Main</Link>
           <Link to="/about">About</Link>
+          <Link to="/sanmoku">Sanmoku</Link>
         </nav>
       </div>
       <Outlet />
