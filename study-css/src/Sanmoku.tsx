@@ -2,6 +2,14 @@ import { Square } from "./Square";
 import { useState } from "react";
 
 export const Sanmoku = () => {
+  return (
+    <div className="p-2">
+      <Board />
+    </div>
+  );
+};
+
+const Board = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
   const handleClick = (i: number): void => {
