@@ -9,6 +9,7 @@ export const Layout = () => {
           <Link to="/main">Main</Link>
           <Link to="/about">About</Link>
           <Link to="/sanmoku">Sanmoku</Link>
+          <Link to="/tic-tac-toe">TicTacToe</Link>
         </nav>
       </div>
       <Outlet />

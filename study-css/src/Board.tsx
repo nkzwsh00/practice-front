@@ -3,8 +3,8 @@ import { Square } from "./Square";
 
 type BoardProps = {
   xIsNext: boolean;
-  squares: string[];
-  onPlay: React.MouseEventHandler<HTMLButtonElement>;
+  squares: (string | null)[];
+  onPlay: (squares: string | null) => void;
 };
 
 export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
@@ -13,7 +13,7 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
     if (squares[i] || calculateWinner(squares)) {
       return;
     }
-    const nextSquares = [
+    const nextSquares: (string | null)[] = [
       ...squares.slice(0, i),
       xIsNext ? "X" : "O",
       ...squares.slice(i + 1),
@@ -49,7 +49,7 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
   );
 };
 
-const calculateWinner = (squares: string[]): string | null => {
+const calculateWinner = (squares: (string | null)[]): string | null => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

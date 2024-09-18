@@ -4,15 +4,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App.tsx";
 import { Layout } from "./Layout.tsx";
 import "./index.css";
-import ErrorPage from "./ErrorPage.tsx";
 import { Page1 } from "./Page1.tsx";
 import { Sanmoku } from "./Sanmoku.tsx";
+import TicTacToe from "./TicTacToe.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    errorElement: <Layout />,
     children: [
       {
         path: "/main",
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/sanmoku",
         element: <Sanmoku />,
+      },
+      {
+        path: "/tic-tac-toe",
+        element: <TicTacToe />,
       },
     ],
   },
