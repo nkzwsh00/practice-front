@@ -13,14 +13,14 @@ type boardProps = {
 
 const Square: FC<squareProps> = ({ value, onSquareClick }) => {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="border border-gray-900 size-8" onClick={onSquareClick}>
       {value}
     </button>
   );
 };
 
 const Board: FC<boardProps> = ({ xIsNext, squares, onPlay }) => {
-  function handleClick(i) {
+  function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
