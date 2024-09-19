@@ -4,12 +4,11 @@ import { Square } from "./Square";
 type BoardProps = {
   xIsNext: boolean;
   squares: (string | null)[];
-  onPlay: (squares: string | null) => void;
+  onPlay: (squares: (string | null)[]) => void;
 };
 
 export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
   const handleClick = (i: number): void => {
-    console.log("handleClick");
     if (squares[i] || calculateWinner(squares)) {
       return;
     }

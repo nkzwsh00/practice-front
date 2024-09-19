@@ -2,7 +2,7 @@ import { FC, SetStateAction, useState } from "react";
 
 type squareProps = {
   value: string | null;
-  onSquareClick: () => void;
+  onSquareClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 type boardProps = {
@@ -24,12 +24,11 @@ const Board: FC<boardProps> = ({ xIsNext, squares, onPlay }) => {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const nextSquares = squares.slice();
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
+    const nextSquares: (string | null)[] = [
+      ...squares.slice(0, i),
+      xIsNext ? "X" : "O",
+      ...squares.slice(i + 1),
+    ];
     onPlay(nextSquares);
   }
 
