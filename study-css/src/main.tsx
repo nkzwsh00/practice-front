@@ -7,6 +7,7 @@ import "./index.css";
 import { Page1 } from "./Page1.tsx";
 import { Sanmoku } from "./Sanmoku.tsx";
 import TicTacToe from "./TicTacToe.tsx";
+import { Slay } from "./slay/Slay.tsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/tic-tac-toe",
         element: <TicTacToe />,
+      },
+      {
+        path: "/slay",
+        element: <Slay />,
       },
     ],
   },

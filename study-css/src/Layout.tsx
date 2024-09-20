@@ -10,6 +10,7 @@ export const Layout = () => {
           <Link to="/about">About</Link>
           <Link to="/sanmoku">Sanmoku</Link>
           <Link to="/tic-tac-toe">TicTacToe</Link>
+          <Link to="/slay">Slay</Link>
         </nav>
       </div>
       <Outlet />
