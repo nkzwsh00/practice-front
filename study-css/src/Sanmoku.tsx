@@ -25,7 +25,12 @@ export const Sanmoku: FC = () => {
     }
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        <button
+          className="border boder-cyan-600 bg-cyan-600 text-white px-2"
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
       </li>
     );
   });
