@@ -18,6 +18,13 @@ export const Sanmoku: FC = () => {
   };
   const moves = history.map((squares, move) => {
     let description;
+    if (move === currentMove) {
+      return (
+        <li key={move}>
+          <p className="p-2">{"You are at move #" + move}</p>
+        </li>
+      );
+    }
     if (move > 0) {
       description = "Go to move #" + move;
     } else {
@@ -26,7 +33,7 @@ export const Sanmoku: FC = () => {
     return (
       <li key={move}>
         <button
-          className="border boder-cyan-600 bg-cyan-600 text-white px-2"
+          className="border boder-cyan-600 bg-cyan-600 text-white p-2"
           onClick={() => jumpTo(move)}
         >
           {description}
