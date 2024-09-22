@@ -45,6 +45,7 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
   );
 };
 
+// 勝者を計算する関数
 const calculateWinner = (squares: (string | null)[]): string | null => {
   const lines = [
     [0, 1, 2],
@@ -59,7 +60,7 @@ const calculateWinner = (squares: (string | null)[]): string | null => {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return squares[a] as string;
     }
   }
   return null;
