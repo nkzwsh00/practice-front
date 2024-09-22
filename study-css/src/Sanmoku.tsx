@@ -2,13 +2,18 @@ import { Board } from "./Board";
 import { useState, FC, SetStateAction } from "react";
 
 export const Sanmoku: FC = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState<Array<Array<string | null>>>([
+    Array(3).fill(Array(3).fill(null)),
+  ]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  const handlePlay = (nextSquares: (string | null)[]): void => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+  const handlePlay = (nextSquares: (string | null)[][]): void => {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares] as (
+      | string
+      | null
+    )[][];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   };

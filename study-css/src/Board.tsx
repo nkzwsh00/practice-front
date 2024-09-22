@@ -3,18 +3,23 @@ import { Square } from "./Square";
 
 type BoardProps = {
   xIsNext: boolean;
-  squares: (string | null)[];
-  onPlay: (squares: (string | null)[]) => void;
+  squares: (string | null)[][];
+  onPlay: (squares: (string | null)[][]) => void;
 };
 
 export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
-  const handleClick = (i: number): void => {
-    if (squares[i] || calculateWinner(squares)) {
+  const handleClick = (i: number, j: number): void => {
+    if (squares[i][j] || calculateWinner(squares)) {
       return;
     }
-    const nextSquares: (string | null)[] = [
+    // [i][j]にxIsNextの値を入れた新しいsquaresを作成
+    const nextSquares: (string | null)[][] = [
       ...squares.slice(0, i),
-      xIsNext ? "X" : "O",
+      [
+        ...squares[i].slice(0, j),
+        xIsNext ? "X" : "O",
+        ...squares[i].slice(j + 1),
+      ],
       ...squares.slice(i + 1),
     ];
     onPlay(nextSquares);
@@ -30,15 +35,16 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
     <div className="p-2">
       <div>{status}</div>
       <div className="border border-gray-900 gap-1">
-        {squares.map((value, index) => (
-          <>
-            <Square
-              key={index}
-              value={value}
-              onClick={() => handleClick(index)}
-            />
-            {(index + 1) % 3 === 0 && <br />}
-          </>
+        {squares.map((row, rowIndex) => (
+          <div>
+            {row.map((col, colIndex) => (
+              <Square
+                key={rowIndex * row.length + colIndex}
+                value={col}
+                onClick={() => handleClick(rowIndex, colIndex)}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>
@@ -46,21 +52,60 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 };
 
 // 勝者を計算する関数
-const calculateWinner = (squares: (string | null)[]): string | null => {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
+const calculateWinner = (squares: (string | null)[][]): string | null => {
+  const winPatterns = [
+    // 横
+    [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+    ],
+    [
+      [1, 0],
+      [1, 1],
+      [1, 2],
+    ],
+    [
+      [2, 0],
+      [2, 1],
+      [2, 2],
+    ],
+    // 縦
+    [
+      [0, 0],
+      [1, 0],
+      [2, 0],
+    ],
+    [
+      [0, 1],
+      [1, 1],
+      [2, 1],
+    ],
+    [
+      [0, 2],
+      [1, 2],
+      [2, 2],
+    ],
+    // 斜め
+    [
+      [0, 0],
+      [1, 1],
+      [2, 2],
+    ],
+    [
+      [0, 2],
+      [1, 1],
+      [2, 0],
+    ],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a] as string;
+  for (let i = 0; i < winPatterns.length; i++) {
+    const [a, b, c] = winPatterns[i];
+    if (
+      squares[a[0]][a[1]] &&
+      squares[a[0]][a[1]] === squares[b[0]][b[1]] &&
+      squares[a[0]][a[1]] === squares[c[0]][c[1]]
+    ) {
+      return squares[a[0]][a[1]];
     }
   }
   return null;
