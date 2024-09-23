@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { Square } from "./Square";
 
 type BoardProps = {
@@ -25,6 +25,7 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
     onPlay(nextSquares);
   };
   const winner = calculateWinner(squares);
+  const winningLine = calculateLine(squares);
   let status;
   if (winner) {
     status = `Winner: ${winner}`;
@@ -37,13 +38,19 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
       <div className="border border-gray-900 gap-1">
         {squares.map((row, rowIndex) => (
           <div>
-            {row.map((col, colIndex) => (
-              <Square
-                key={rowIndex * row.length + colIndex}
-                value={col}
-                onClick={() => handleClick(rowIndex, colIndex)}
-              />
-            ))}
+            {row.map((col, colIndex) => {
+              const isWinningSquare = winningLine?.some(
+                ([winRow, winCol]) => winRow === rowIndex && winCol === colIndex
+              );
+              return (
+                <Square
+                  key={rowIndex * row.length + colIndex}
+                  value={col}
+                  onClick={() => handleClick(rowIndex, colIndex)}
+                  isWinning={isWinningSquare}
+                />
+              );
+            })}
           </div>
         ))}
       </div>
@@ -53,51 +60,6 @@ export const Board: FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 
 // 勝者を計算する関数
 const calculateWinner = (squares: (string | null)[][]): string | null => {
-  const winPatterns = [
-    // 横
-    [
-      [0, 0],
-      [0, 1],
-      [0, 2],
-    ],
-    [
-      [1, 0],
-      [1, 1],
-      [1, 2],
-    ],
-    [
-      [2, 0],
-      [2, 1],
-      [2, 2],
-    ],
-    // 縦
-    [
-      [0, 0],
-      [1, 0],
-      [2, 0],
-    ],
-    [
-      [0, 1],
-      [1, 1],
-      [2, 1],
-    ],
-    [
-      [0, 2],
-      [1, 2],
-      [2, 2],
-    ],
-    // 斜め
-    [
-      [0, 0],
-      [1, 1],
-      [2, 2],
-    ],
-    [
-      [0, 2],
-      [1, 1],
-      [2, 0],
-    ],
-  ];
   for (let i = 0; i < winPatterns.length; i++) {
     const [a, b, c] = winPatterns[i];
     if (
@@ -110,3 +72,64 @@ const calculateWinner = (squares: (string | null)[][]): string | null => {
   }
   return null;
 };
+
+// 一列に揃ったsquareの配置を返す関数
+const calculateLine = (squares: (string | null)[][]): number[][] | null => {
+  for (let i = 0; i < winPatterns.length; i++) {
+    const [a, b, c] = winPatterns[i];
+    if (
+      squares[a[0]][a[1]] &&
+      squares[a[0]][a[1]] === squares[b[0]][b[1]] &&
+      squares[a[0]][a[1]] === squares[c[0]][c[1]]
+    ) {
+      return winPatterns[i];
+    }
+  }
+  return null;
+};
+
+const winPatterns = [
+  // 横
+  [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ],
+  [
+    [1, 0],
+    [1, 1],
+    [1, 2],
+  ],
+  [
+    [2, 0],
+    [2, 1],
+    [2, 2],
+  ],
+  // 縦
+  [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+  ],
+  [
+    [0, 1],
+    [1, 1],
+    [2, 1],
+  ],
+  [
+    [0, 2],
+    [1, 2],
+    [2, 2],
+  ],
+  // 斜め
+  [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+  ],
+  [
+    [0, 2],
+    [1, 1],
+    [2, 0],
+  ],
+];
