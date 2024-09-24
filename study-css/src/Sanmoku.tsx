@@ -43,6 +43,7 @@ export const Sanmoku: FC = () => {
         >
           {description}
         </button>
+        {history[move].map((row) => row.join(",")).join(",")}
       </li>
     );
   });
