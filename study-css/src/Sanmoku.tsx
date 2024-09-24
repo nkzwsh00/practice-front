@@ -58,3 +58,5 @@ export const Sanmoku: FC = () => {
     </div>
   );
 };
+
+// 着手履歴を（x,y）で表示する関数
