@@ -3,31 +3,15 @@ import { Link, Outlet } from "react-router-dom";
 export const Root = () => {
   return (
     <>
-      <div id="sidebar">
-        <h1 className="text-cyan-500">React Router Contacts</h1>
-        <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-            />
-            <div id="search-spinner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite"></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
-        </div>
+      <div className="bg-slate-400 border border-cyan-200">
+        <h1>TITLE</h1>
         <nav>
           <ul>
             <li>
-              <Link to={`contacts/1`}>Your Name</Link>
+              <Link to={`contacts/1`}>リンク1</Link>
             </li>
             <li>
-              <Link to={`contacts/2`}>Your Friend</Link>
+              <Link to={`contacts/2`}>リンク2</Link>
             </li>
           </ul>
         </nav>
