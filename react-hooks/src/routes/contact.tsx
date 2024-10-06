@@ -1,6 +1,6 @@
 import { Form } from "react-router-dom";
 
-export default function Contact() {
+export const Contact = () => {
   const contact = {
     first: "Your",
     last: "Name",
@@ -13,15 +13,8 @@ export default function Contact() {
   return (
     <div id="contact">
       <div>
-        <img
-          key={contact.avatar}
-          src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
-          }
-        />
+        <img key={contact.avatar} src={contact.avatar} />
       </div>
-
       <div>
         <h1>
           {contact.first || contact.last ? (
@@ -63,18 +56,18 @@ export default function Contact() {
       </div>
     </div>
   );
-}
+};
 
-interface Contact {
+type Contact = {
   first: string;
   last: string;
   avatar: string;
   twitter: string;
   notes: string;
   favorite: boolean;
-}
+};
 
-function Favorite({ contact }: { contact: Contact }) {
+const Favorite = ({ contact }: { contact: Contact }) => {
   const favorite = contact.favorite;
   return (
     <Form method="post">
@@ -87,4 +80,4 @@ function Favorite({ contact }: { contact: Contact }) {
       </button>
     </Form>
   );
-}
+};

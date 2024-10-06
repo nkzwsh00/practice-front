@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-export default function Root() {
+export const Root = () => {
   return (
     <>
       <div id="sidebar">
@@ -37,4 +37,4 @@ export default function Root() {
       </div>
     </>
   );
-}
+};
