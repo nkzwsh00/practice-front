@@ -11,6 +11,7 @@ export default function Root() {
             <Link to="/chat" style={{ color: 'lightblue', textDecoration: 'none' }}>Chat</Link>
             <Link to="/toggle" style={{ color: 'lightblue', textDecoration: 'none' }}>Toggle</Link>
             <Link to="/dashboard" style={{ color: 'lightblue', textDecoration: 'none' }}>Dashboard</Link>
+            <Link to="/chat14" style={{ color: 'lightblue', textDecoration: 'none' }}>Chat14</Link>
           </div>
         </div>
       </div>
