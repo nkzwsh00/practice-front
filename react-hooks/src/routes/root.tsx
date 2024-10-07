@@ -11,7 +11,7 @@ export const Root = () => {
               <Link to={`contacts/1`}>リンク1</Link>
             </li>
             <li>
-              <Link to={`contacts/2`}>リンク2</Link>
+              <Link to={`Learn`}>リンク2</Link>
             </li>
           </ul>
         </nav>
