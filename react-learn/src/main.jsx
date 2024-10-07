@@ -8,6 +8,7 @@ import {
 import App from './App.jsx'
 import Chat from './learn-ref/11.jsx'
 import Toggle from './learn-ref/12.jsx'
+import Dashboard from './learn-ref/13.jsx';
 
 import './index.css'
 import Root from './Root.jsx';
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/toggle",
         element: <Toggle />,
-      }
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
     ],
   },
 ]);

@@ -10,6 +10,7 @@ export default function Root() {
           <div style={{  display: 'flex', flexDirection: 'row', gap: '10px', justifyContent: 'center' }}>
             <Link to="/chat" style={{ color: 'lightblue', textDecoration: 'none' }}>Chat</Link>
             <Link to="/toggle" style={{ color: 'lightblue', textDecoration: 'none' }}>Toggle</Link>
+            <Link to="/dashboard" style={{ color: 'lightblue', textDecoration: 'none' }}>Dashboard</Link>
           </div>
         </div>
       </div>
