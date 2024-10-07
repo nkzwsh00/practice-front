@@ -9,10 +9,11 @@ export default function Root() {
           <Link to="/app" style={{ color: 'lightblue', textDecoration: 'none' }}>TOP</Link>
           <div style={{  display: 'flex', flexDirection: 'row', gap: '10px', justifyContent: 'center' }}>
             <Link to="/chat" style={{ color: 'lightblue', textDecoration: 'none' }}>Chat</Link>
+            <Link to="/toggle" style={{ color: 'lightblue', textDecoration: 'none' }}>Toggle</Link>
           </div>
         </div>
       </div>
-      <div>
+      <div style={{padding: '25px'}}>
         <Outlet />
       </div>
     </>
