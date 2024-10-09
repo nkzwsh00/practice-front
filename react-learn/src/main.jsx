@@ -1,19 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-import App from './App.jsx'
-import Chat from './learn-ref/11.jsx'
-import Toggle from './learn-ref/12.jsx'
-import Dashboard from './learn-ref/13.jsx';
-import Chat14 from './learn-ref/14.jsx';
-import VideoPlayer from './learn-ref/21.jsx';
-
-import './index.css'
-import Root from './Root.jsx';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import Root from "./Root.jsx";
+import App from "./App.jsx";
+import Chat from "./learn-ref/11.jsx";
+import Toggle from "./learn-ref/12.jsx";
+import Dashboard from "./learn-ref/13.jsx";
+import Chat14 from "./learn-ref/14.jsx";
+import VideoPlayer from "./learn-ref/21.jsx";
+import Page from "./learn-ref/22.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,13 +39,17 @@ const router = createBrowserRouter([
       {
         path: "/videoPlayer",
         element: <VideoPlayer />,
-      }
+      },
+      {
+        path: "/page",
+        element: <Page />,
+      },
     ],
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);
