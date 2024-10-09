@@ -10,6 +10,7 @@ import Dashboard from "./learn-ref/13.jsx";
 import Chat14 from "./learn-ref/14.jsx";
 import VideoPlayer from "./learn-ref/21.jsx";
 import Page from "./learn-ref/22.jsx";
+import CatFriends from "./learn-ref/23.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
         path: "/page",
         element: <Page />,
       },
+      { path: "/catFriends", element: <CatFriends /> },
     ],
   },
 ]);
