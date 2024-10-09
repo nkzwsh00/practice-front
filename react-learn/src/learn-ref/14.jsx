@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
 export default function Chat14() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const textRef = useRef(text);
 
   function handleChange(e) {
@@ -10,20 +10,14 @@ export default function Chat14() {
   }
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + text);
+      alert("Sending: " + text);
     }, 3000);
   }
 
   return (
     <>
-      <input
-        value={text}
-        onChange={e => handleChange(e)}
-      />
-      <button
-        onClick={handleSend}>
-        Send
-      </button>
+      <input value={text} onChange={(e) => handleChange(e)} />
+      <button onClick={handleSend}>Send</button>
     </>
   );
 }

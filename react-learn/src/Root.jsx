@@ -13,6 +13,9 @@ export default function Root() {
             <Link to="/dashboard" style={{ color: 'lightblue', textDecoration: 'none' }}>Dashboard</Link>
             <Link to="/chat14" style={{ color: 'lightblue', textDecoration: 'none' }}>Chat14</Link>
           </div>
+          <div style={{  display: 'flex', flexDirection: 'row', gap: '10px', justifyContent: 'center' }}>
+            <Link to="/videoPlayer" style={{ color: 'lightblue', textDecoration: 'none' }}>VideoPlayer</Link>
+            </div>
         </div>
       </div>
       <div style={{padding: '25px'}}>

@@ -10,6 +10,7 @@ import Chat from './learn-ref/11.jsx'
 import Toggle from './learn-ref/12.jsx'
 import Dashboard from './learn-ref/13.jsx';
 import Chat14 from './learn-ref/14.jsx';
+import VideoPlayer from './learn-ref/21.jsx';
 
 import './index.css'
 import Root from './Root.jsx';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/chat14",
         element: <Chat14 />,
+      },
+      {
+        path: "/videoPlayer",
+        element: <VideoPlayer />,
       }
     ],
   },
