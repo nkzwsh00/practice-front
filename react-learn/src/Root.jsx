@@ -73,6 +73,12 @@ export default function Root() {
             >
               CatFriends
             </Link>
+            <Link
+              to="/page24"
+              style={{ color: "lightblue", textDecoration: "none" }}
+            >
+              Page24
+            </Link>
           </div>
         </div>
       </div>
