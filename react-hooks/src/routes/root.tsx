@@ -13,6 +13,9 @@ export const Root = () => {
             <li>
               <Link to={`Learn`}>リンク2</Link>
             </li>
+            <li>
+              <Link to={`ajax`}>ajax</Link>
+            </li>
           </ul>
         </nav>
       </div>

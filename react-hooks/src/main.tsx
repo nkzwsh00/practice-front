@@ -7,6 +7,7 @@ import { ErrorPage } from "./error-page";
 import { Contact } from "./routes/contact";
 import App from "./App";
 import { Learn } from "./Learn";
+import { Ajax } from "./Ajax";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: "learn/",
         element: <Learn />,
       },
+      { path: "ajax", element: <Ajax /> },
     ],
   },
 ]);
