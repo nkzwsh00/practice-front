@@ -8,12 +8,6 @@ export const Root = () => {
         <nav>
           <ul>
             <li>
-              <Link to={`contacts/1`}>リンク1</Link>
-            </li>
-            <li>
-              <Link to={`Learn`}>リンク2</Link>
-            </li>
-            <li>
               <Link to={`ajax`}>ajax</Link>
             </li>
           </ul>
