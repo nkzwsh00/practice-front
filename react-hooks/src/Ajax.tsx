@@ -19,7 +19,7 @@ export const Ajax: FC = () => {
         </button>
       </div>
       {userInfo && (
-        <div className="text-center flex gap-6">
+        <div className="text-center flex gap-6 border border-cyan-700 px-8 py-4">
           <img
             width={240}
             height={240}
