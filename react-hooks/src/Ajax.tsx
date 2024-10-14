@@ -8,21 +8,31 @@ export const Ajax: FC = () => {
   };
 
   return (
-    <div>
-      <h1>Ajax</h1>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleFetchUserInfo}
-      >
-        get
-      </button>
+    <div className="flex flex-col items-center p-4 gap-6">
+      <div className="flex justify-center items-center">
+        <p>Ajax通信で値を取得し、画面に描画する。</p>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleFetchUserInfo}
+        >
+          get
+        </button>
+      </div>
       {userInfo && (
-        <div>
-          <p>Name: {userInfo.name}</p>
-          <p>Login: {userInfo.login}</p>
-          <p>Location: {userInfo.location}</p>
-          <p>Public Repos: {userInfo.public_repos}</p>
-          <img src={userInfo.avatar_url} alt="avatar" />
+        <div className="text-center flex gap-6">
+          <img
+            width={240}
+            height={240}
+            src={userInfo.avatar_url}
+            alt="avatar"
+            className="rounded-full"
+          />
+          <div className="flex flex-col justify-center items-start gap-2">
+            <p>Name: {userInfo.name}</p>
+            <p>Login: {userInfo.login}</p>
+            <p>Location: {userInfo.location}</p>
+            <p>Public Repos: {userInfo.public_repos}</p>
+          </div>
         </div>
       )}
     </div>
