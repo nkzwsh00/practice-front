@@ -8,6 +8,9 @@ import { Contact } from "./routes/contact";
 import App from "./App";
 import { Learn } from "./Learn";
 import { Ajax } from "./Ajax";
+import TodoList from "./components/TodoList";
+import AddTodo from "./components/AddTodo";
+import EditTodo from "./components/EditTodo";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,20 @@ const router = createBrowserRouter([
         element: <Learn />,
       },
       { path: "ajax", element: <Ajax /> },
+      {
+        path: "todo",
+        element: <TodoList />,
+        children: [
+          {
+            path: "add",
+            element: <AddTodo />,
+          },
+          {
+            path: "edit/:id",
+            element: <EditTodo />,
+          },
+        ],
+      },
     ],
   },
 ]);
