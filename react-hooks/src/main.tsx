@@ -8,9 +8,9 @@ import { Contact } from "./routes/contact";
 import App from "./App";
 import { Learn } from "./Learn";
 import { Ajax } from "./Ajax";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
-import EditTodo from "./components/EditTodo";
+import { TodoList } from "./components/TodoList";
+import { AddTodo } from "./components/AddTodo";
+import { EditTodo } from "./components/EditTodo";
 
 const router = createBrowserRouter([
   {

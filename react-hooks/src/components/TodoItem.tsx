@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTodo, Todo } from '../context/TodoContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useTodo, Todo } from "../context/TodoContext";
 
 interface TodoItemProps {
   todo: Todo;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
+export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const { toggleTodo, deleteTodo } = useTodo();
 
   return (
@@ -18,12 +18,15 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
           onChange={() => toggleTodo(todo.id)}
           className="mr-2"
         />
-        <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+        <span className={todo.completed ? "line-through text-gray-500" : ""}>
           {todo.text}
         </span>
       </div>
       <div>
-        <Link to={`/edit/${todo.id}`} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2">
+        <Link
+          to={`/edit/${todo.id}`}
+          className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2"
+        >
           Edit
         </Link>
         <button
@@ -36,5 +39,3 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     </li>
   );
 };
-
-export default TodoItem;

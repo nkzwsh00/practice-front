@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTodo } from '../context/TodoContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTodo } from "../context/TodoContext";
 
-const AddTodo: React.FC = () => {
-  const [text, setText] = useState('');
+export const AddTodo: React.FC = () => {
+  const [text, setText] = useState("");
   const { addTodo } = useTodo();
   const navigate = useNavigate();
 
@@ -11,8 +11,8 @@ const AddTodo: React.FC = () => {
     e.preventDefault();
     if (text.trim()) {
       addTodo(text);
-      setText('');
-      navigate('/');
+      setText("");
+      navigate("/");
     }
   };
 
@@ -25,11 +25,12 @@ const AddTodo: React.FC = () => {
         placeholder="Enter new todo"
         className="w-full p-2 border border-gray-300 rounded"
       />
-      <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      <button
+        type="submit"
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
         Add Todo
       </button>
     </form>
   );
 };
-
-export default AddTodo;

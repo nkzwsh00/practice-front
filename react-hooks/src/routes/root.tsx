@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import { TodoProvider } from "../context/TodoContext";
 
 export const Root = () => {
   return (
@@ -40,7 +41,9 @@ export const Root = () => {
         </div>
       </div>
       <div id="detail">
-        <Outlet />
+        <TodoProvider>
+          <Outlet />
+        </TodoProvider>
       </div>
     </>
   );
