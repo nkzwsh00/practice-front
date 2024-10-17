@@ -19,28 +19,12 @@ export const Root = () => {
                     top
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to={`ajax`}
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
-                  >
-                    ajax
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={`todo`}
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
-                  >
-                    todo
-                  </Link>
-                </li>
               </ul>
             </nav>
           </div>
         </div>
       </div>
-      <div id="detail">
+      <div className="pt-20" id="detail">
         <TodoProvider>
           <Outlet />
         </TodoProvider>
