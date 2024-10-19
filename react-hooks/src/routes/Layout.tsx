@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { TodoProvider } from "../context/TodoContext";
 
-export const Root = () => {
+export const Layout = () => {
   return (
     <>
       <div className="bg-slate-400 border border-cyan-200 flex flex-col py-1 px-2">

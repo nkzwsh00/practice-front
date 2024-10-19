@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Root } from "./routes/root";
+import { Layout } from "./routes/Layout";
 import { ErrorPage } from "./error-page";
 import { TodoList } from "./components/TodoList";
 import { AddTodo } from "./components/AddTodo";
@@ -11,7 +11,7 @@ import { EditTodo } from "./components/EditTodo";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       // {
