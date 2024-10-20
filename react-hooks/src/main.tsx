@@ -7,6 +7,7 @@ import { ErrorPage } from "./error-page";
 import { TodoList } from "./components/TodoList";
 import { AddTodo } from "./components/AddTodo";
 import { EditTodo } from "./components/EditTodo";
+import { Ajax } from "./Ajax";
 
 const router = createBrowserRouter([
   {
@@ -14,30 +15,23 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      // {
-      //   path: "/",
-      //   element: <App />,
-      // },
-      // {
-      //   path: "contacts/:contactId",
-      //   element: <Contact />,
-      // },
-      // {
-      //   path: "learn/",
-      //   element: <Learn />,
-      // },
-      // { path: "ajax", element: <Ajax /> },
       {
         path: "/",
+        element: <Ajax />,
+      },
+      {
+        path: "/todo/",
         element: <TodoList />,
-      },
-      {
-        path: "/add",
-        element: <AddTodo />,
-      },
-      {
-        path: "/edit/:id",
-        element: <EditTodo />,
+        children: [
+          {
+            path: "add",
+            element: <AddTodo />,
+          },
+          {
+            path: "edit/:id",
+            element: <EditTodo />,
+          },
+        ],
       },
     ],
   },
