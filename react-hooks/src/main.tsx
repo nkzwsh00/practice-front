@@ -11,7 +11,6 @@ import { Ajax } from "./Ajax";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -20,18 +19,16 @@ const router = createBrowserRouter([
         element: <Ajax />,
       },
       {
-        path: "/todo/",
+        path: "todo",
         element: <TodoList />,
-        children: [
-          {
-            path: "add",
-            element: <AddTodo />,
-          },
-          {
-            path: "edit/:id",
-            element: <EditTodo />,
-          },
-        ],
+      },
+      {
+        path: "add",
+        element: <AddTodo />,
+      },
+      {
+        path: "edit/:id",
+        element: <EditTodo />,
       },
     ],
   },

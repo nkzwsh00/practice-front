@@ -19,7 +19,7 @@ export const EditTodo: React.FC = () => {
     e.preventDefault();
     if (text.trim() && id) {
       editTodo(Number(id), text);
-      navigate("/");
+      navigate("/todo");
     }
   };
 

@@ -9,7 +9,7 @@ export const TodoList: React.FC = () => {
   return (
     <div>
       <Link
-        to="/todo/add"
+        to="/add"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block"
       >
         Add Todo

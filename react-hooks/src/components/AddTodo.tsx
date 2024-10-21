@@ -12,7 +12,7 @@ export const AddTodo: React.FC = () => {
     if (text.trim()) {
       addTodo(text);
       setText("");
-      navigate("/");
+      navigate("/todo");
     }
   };
 
