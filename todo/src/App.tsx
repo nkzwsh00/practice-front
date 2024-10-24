@@ -1,8 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { useState, useEffect, createContext, useContext } from "react";
 
 // Theme context
 const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
@@ -102,22 +98,22 @@ export default function TaskManager() {
             className="w-full max-w-sm mx-auto px-4 py-2"
           >
             <div className="flex items-center border-b-2 border-teal-500 py-2">
-              <Input
+              <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 type="text"
                 placeholder="Add a task"
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
               />
-              <Button
+              <button
                 type="submit"
                 className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
               >
                 Add
-              </Button>
+              </button>
             </div>
           </form>
-          <Select
+          <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -125,7 +121,7 @@ export default function TaskManager() {
             <option value="all">All</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
-          </Select>
+          </select>
           <ul className="divide-y divide-gray-200">
             {filteredTasks.map((task) => (
               <li key={task.id} className="px-4 py-3">
@@ -166,12 +162,13 @@ export default function TaskManager() {
 function ThemeToggle() {
   const { isDark, toggleTheme } = useContext(ThemeContext);
   return (
-    <Button onClick={toggleTheme} variant="outline" size="icon">
-      {isDark ? (
-        <Sun className="h-[1.2rem] w-[1.2rem]" />
-      ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem]" />
-      )}
-    </Button>
+    <button
+      onClick={toggleTheme}
+      className={`px-4 py-2 rounded ${
+        isDark ? "bg-yellow-400 text-gray-900" : "bg-gray-800 text-white"
+      }`}
+    >
+      {isDark ? "Light Mode" : "Dark Mode"}
+    </button>
   );
 }
