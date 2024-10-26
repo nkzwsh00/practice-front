@@ -4,10 +4,10 @@ import { useState, useEffect, createContext, useContext } from "react";
 const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
 
 // Custom hook for local storage
-function useLocalStorage<T>(
+const useLocalStorage = <T,>(
   key: string,
   initialValue: T
-): [T, (value: T) => void] {
+): [T, (value: T) => void] => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -30,7 +30,7 @@ function useLocalStorage<T>(
   };
 
   return [storedValue, setValue];
-}
+};
 
 // Task type
 type Task = {
@@ -39,7 +39,7 @@ type Task = {
   completed: boolean;
 };
 
-export default function TaskManager() {
+const TaskManager = () => {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const [newTask, setNewTask] = useState("");
   const [filter, setFilter] = useState("all");
@@ -157,9 +157,9 @@ export default function TaskManager() {
       </div>
     </ThemeContext.Provider>
   );
-}
+};
 
-function ThemeToggle() {
+const ThemeToggle = () => {
   const { isDark, toggleTheme } = useContext(ThemeContext);
   return (
     <button
@@ -171,4 +171,6 @@ function ThemeToggle() {
       {isDark ? "Light Mode" : "Dark Mode"}
     </button>
   );
-}
+};
+
+export default TaskManager;
