@@ -128,3 +128,5 @@ export const TaskManager = () => {
     </ThemeContext.Provider>
   );
 };
+
+export default TaskManager;
