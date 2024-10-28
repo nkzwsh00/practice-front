@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 
 // Theme context
-const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
+const ThemeContext = createContext({ isDark: true, toggleTheme: () => {} });
 
 // Custom hook for local storage
 const useLocalStorage = <T,>(
