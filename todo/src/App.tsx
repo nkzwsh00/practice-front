@@ -1,36 +1,6 @@
-import { useState, useEffect, createContext, useContext } from "react";
-
-// Theme context
-const ThemeContext = createContext({ isDark: true, toggleTheme: () => {} });
-
-// Custom hook for local storage
-const useLocalStorage = <T,>(
-  key: string,
-  initialValue: T
-): [T, (value: T) => void] => {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.log(error);
-      return initialValue;
-    }
-  });
-
-  const setValue = (value: T) => {
-    try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return [storedValue, setValue];
-};
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "./hooks";
+import { ThemeContext, ThemeToggle } from "./ThemeToggle";
 
 // Task type
 type Task = {
@@ -39,11 +9,11 @@ type Task = {
   completed: boolean;
 };
 
-const TaskManager = () => {
+export const TaskManager = () => {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const [newTask, setNewTask] = useState("");
   const [filter, setFilter] = useState("all");
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const addTask = () => {
     if (newTask.trim() !== "") {
@@ -158,19 +128,3 @@ const TaskManager = () => {
     </ThemeContext.Provider>
   );
 };
-
-const ThemeToggle = () => {
-  const { isDark, toggleTheme } = useContext(ThemeContext);
-  return (
-    <button
-      onClick={toggleTheme}
-      className={`px-4 py-2 rounded ${
-        isDark ? "bg-yellow-400 text-gray-900" : "bg-gray-800 text-white"
-      }`}
-    >
-      {isDark ? "Light Mode" : "Dark Mode"}
-    </button>
-  );
-};
-
-export default TaskManager;
