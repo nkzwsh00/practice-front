@@ -46,6 +46,15 @@ export const TaskManager = () => {
     document.body.className = isDark ? "dark" : "light";
   }, [isDark]);
 
+  function editTask(id: number): void {
+    const text = prompt("Edit task:");
+    if (text) {
+      setTasks(
+        tasks.map((task) => (task.id === id ? { ...task, text } : task))
+      );
+    }
+  }
+
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       <div
@@ -113,12 +122,20 @@ export const TaskManager = () => {
                       {task.text}
                     </p>
                   </div>
-                  <button
-                    onClick={() => deleteTask(task.id)}
-                    className="ml-2 text-red-600 hover:text-red-900"
-                  >
-                    Delete
-                  </button>
+                  <div className="flex gap-6">
+                    <button
+                      onClick={() => editTask(task.id)}
+                      className="text-teal-600 hover:text-teal-900"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => deleteTask(task.id)}
+                      className="ml-2 text-red-600 hover:text-red-900"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
