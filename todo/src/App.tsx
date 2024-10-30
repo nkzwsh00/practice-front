@@ -13,6 +13,7 @@ export const TaskManager = () => {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const [newTask, setNewTask] = useState("");
   const [filter, setFilter] = useState("all");
+  const [sortOrder, setSortOrder] = useState("asc"); // 並び替えの状態変数を追加
   const [isDark, setIsDark] = useState(true);
 
   const addTask = () => {
@@ -34,11 +35,16 @@ export const TaskManager = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === "active") return !task.completed;
-    if (filter === "completed") return task.completed;
-    return true;
-  });
+  const filteredTasks = tasks
+    .filter((task) => {
+      if (filter === "active") return !task.completed;
+      if (filter === "completed") return task.completed;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "asc") return a.text.localeCompare(b.text);
+      return b.text.localeCompare(a.text);
+    });
 
   const toggleTheme = () => setIsDark(!isDark);
 
@@ -100,6 +106,14 @@ export const TaskManager = () => {
             <option value="all">All</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
+          </select>
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline mt-2"
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
           </select>
           <ul className="divide-y divide-gray-200">
             {filteredTasks.map((task) => (
