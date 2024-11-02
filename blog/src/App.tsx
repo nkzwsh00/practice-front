@@ -5,16 +5,16 @@ import PostDetail from "./components/PostDetail";
 import CreatePost from "./components/CreatePost";
 
 export default function App() {
-  return (
-    <Router>
-      <div className="container mx-auto px-4">
-        <Header />
-        <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/post/:id" element={<PostDetail />} />
-          <Route path="/create" element={<CreatePost />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+	return (
+		<Router>
+			<div className="container mx-auto px-4">
+				<Header />
+				<Routes>
+					<Route path="/" element={<PostList />} />
+					<Route path="/post/:id" element={<PostDetail />} />
+					<Route path="/create" element={<CreatePost />} />
+				</Routes>
+			</div>
+		</Router>
+	);
 }
