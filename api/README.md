@@ -49,6 +49,10 @@ export default tseslint.config({
 })
 ```
 
+## target
+- github api 実行し、情報を表示する
+- github api いろいろ叩いてみる
+
 ## scafold script
 `yarn create vite api --template react-ts`
 
