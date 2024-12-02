@@ -16,13 +16,13 @@ export default function GitHubDataFetcher() {
     setError(null);
     try {
       const { data: repoData } = await octokit.rest.repos.get({
-        owner: "octokit",
-        repo: "octokit.js",
+        owner: "nkzwsh00",
+        repo: "practice-front",
       });
 
       const { data: commits } = await octokit.rest.repos.listCommits({
-        owner: "octokit",
-        repo: "octokit.js",
+        owner: "nkzwsh00",
+        repo: "practice-front",
         per_page: 5,
       });
 
@@ -41,7 +41,7 @@ export default function GitHubDataFetcher() {
       <div className="border w-full max-w-2xl mx-auto">
         <div>
           <h1>GitHub リポジトリデータ</h1>
-          <h2>octokit/octokit.js リポジトリの情報を表示します</h2>
+          <h2>nkzwsh00/practice-front リポジトリの情報を表示します</h2>
         </div>
         <div>
           <button onClick={fetchRepositoryData} disabled={isLoading}>
