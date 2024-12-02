@@ -1,64 +1,77 @@
 import { useState } from "react";
+import { Octokit } from "octokit";
+import { GITHUB_TOKEN } from "./config";
+import { RepoData, CommitData } from "./types";
 
-type UserInfo = {
-  name: string;
-  login: string;
-  avatar_url: string;
-  location: string;
-  public_repos: number;
-};
+const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
-const defaultUserInfo: UserInfo = {
-  name: "",
-  login: "",
-  avatar_url: "",
-  location: "",
-  public_repos: 0,
-};
+export default function GitHubDataFetcher() {
+  const [repoData, setRepoData] = useState<RepoData | null>(null);
+  const [commits, setCommits] = useState<CommitData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-function App() {
-  const [userInfo, setUserInfo] = useState(defaultUserInfo);
-  function fetchUserInfo(userId: string) {
-    fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
-      .then((response) => {
-        console.log(response.status);
-        // エラーレスポンスが返されたことを検知する
-        if (!response.ok) {
-          console.error("エラーレスポンス", response);
-        } else {
-          return response.json().then((userInfo) => {
-            console.log(userInfo);
-            setUserInfo(userInfo);
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+  const fetchRepositoryData = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const { data: repoData } = await octokit.rest.repos.get({
+        owner: "octokit",
+        repo: "octokit.js",
       });
-  }
+
+      const { data: commits } = await octokit.rest.repos.listCommits({
+        owner: "octokit",
+        repo: "octokit.js",
+        per_page: 5,
+      });
+
+      setRepoData(repoData);
+      setCommits(commits);
+    } catch (error) {
+      setError("データの取得中にエラーが発生しました。");
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <>
-      <h1 className="text-3xl text-red-600 font-bold underline">
-        Github User Info
-      </h1>
-      <button onClick={() => fetchUserInfo("nkzwsh00")}>Get user info</button>
-      {userInfo.name !== "" && (
+    <div className="container mx-auto p-4">
+      <div className="border w-full max-w-2xl mx-auto">
         <div>
-          <h4>
-            {userInfo.name} (@{userInfo.login})
-          </h4>
-          <img src={userInfo.avatar_url} alt={userInfo.login} height="100" />
-          <dl>
-            <dt>Location</dt>
-            <dd>{userInfo.location}</dd>
-            <dt>Repositories</dt>
-            <dd>{userInfo.public_repos}</dd>
-          </dl>
+          <h1>GitHub リポジトリデータ</h1>
+          <h2>octokit/octokit.js リポジトリの情報を表示します</h2>
         </div>
-      )}
-    </>
+        <div>
+          <button onClick={fetchRepositoryData} disabled={isLoading}>
+            {isLoading ? "データを取得中..." : "データを取得"}
+          </button>
+
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+
+          {repoData && (
+            <div className="mt-4">
+              <h2 className="text-xl font-bold">{repoData.name}</h2>
+              <p>{repoData.description}</p>
+              <p>スター数: {repoData.stargazers_count}</p>
+            </div>
+          )}
+
+          {commits.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">最新のコミット:</h3>
+              <ul className="list-disc list-inside">
+                {commits.map((commit) => (
+                  <li key={commit.sha}>
+                    {commit.commit.message} ({commit.sha.substring(0, 7)})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
-
-export default App;
