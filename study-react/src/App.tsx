@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { letters } from "./data";
+import Letter from "./Letter";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function MailClient() {
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const selectedCount = selectedIds?.length ?? 0;
+
+  function handleToggle(toggledId: number): void {
+    if (selectedIds.includes(toggledId)) {
+      setSelectedIds(selectedIds.filter((id) => id !== toggledId));
+      return;
+    }
+    setSelectedIds([...selectedIds, toggledId]);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map((letter) => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isSelected={selectedIds.includes(letter.id)}
+            onToggle={handleToggle}
+          />
+        ))}
+        <hr />
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <b>You selected {selectedCount} letters</b>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </ul>
     </>
-  )
+  );
 }
-
-export default App
