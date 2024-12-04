@@ -14,6 +14,7 @@ export default function GitHubDataFetcher() {
   const fetchRepositoryData = async () => {
     setIsLoading(true);
     setError(null);
+
     try {
       const { data: repoData } = await octokit.rest.repos.get({
         owner: "nkzwsh00",
