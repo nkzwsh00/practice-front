@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { FC, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function SyncedInputs() {
+  const [text, setText] = useState<string>("");
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    setText(e.target.value);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Input label="First input" text={text} handleChange={handleChange} />
+      <Input label="Second input" text={text} handleChange={handleChange} />
     </>
-  )
+  );
 }
 
-export default App
+const Input: FC<{
+  label: string;
+  text: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ label, text, handleChange }) => {
+  return (
+    <label>
+      {label} <input value={text} onChange={handleChange} />
+    </label>
+  );
+};
