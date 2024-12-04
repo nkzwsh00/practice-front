@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { foods, Food, filterItems } from "./data";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function FilterableList() {
+  const [query, setQuery] = useState<string>("");
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <SearchBar query={query} handleChange={handleChange} />
+      <hr />
+      <List items={filterItems(foods, query)} />
     </>
-  )
+  );
 }
 
-export default App
+const SearchBar = ({
+  query,
+  handleChange,
+}: {
+  query: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}) => {
+  return (
+    <label>
+      Search: <input value={query} onChange={handleChange} />
+    </label>
+  );
+};
+
+const List = ({ items }: { items: Food[] }) => (
+  <table>
+    <tbody>
+      {items.map((food: Food) => (
+        <tr key={food.id}>
+          <td>{food.name}</td>
+          <td>{food.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
