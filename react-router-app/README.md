@@ -49,5 +49,5 @@ export default tseslint.config({
 })
 ```
 
-npm create vite@latest my-vue-app --template react-ts
-npx create-react-router@latest my-react-router-app
+`npm create vite@latest my-vue-app --template react-ts`
+`npx create-react-router@latest my-react-router-app`
