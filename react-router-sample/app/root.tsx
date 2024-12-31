@@ -19,57 +19,8 @@ export async function clientLoader() {
   return { contacts };
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
-  const { contacts } = loaderData;
-  return (
-    <>
-      <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <div>
-          <Form id="search-form" role="search">
-            <input
-              aria-label="Search contacts"
-              id="q"
-              name="q"
-              placeholder="Search"
-              type="search"
-            />
-            <div aria-hidden hidden={true} id="search-spinner" />
-          </Form>
-          <Form method="post">
-            <button type="submit">New</button>
-          </Form>
-        </div>
-        <nav>
-          {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                  <Link to={`contacts/${contact.id}`}>
-                    {contact.first || contact.last ? (
-                      <>
-                        {contact.first} {contact.last}
-                      </>
-                    ) : (
-                      <i>名前なし</i>
-                    )}
-                    {contact.favorite ? <span>★</span> : null}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>連絡先なし</i>
-            </p>
-          )}
-        </nav>
-      </div>
-      <div id="detail">
-        <Outlet />
-      </div>
-    </>
-  );
+export default function App() {
+  return <Outlet />;
 }
 
 // The Layout component is a special export for the root route.
@@ -120,5 +71,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         </pre>
       )}
     </main>
+  );
+}
+
+export function HydrateFallback() {
+  return (
+    <div id="loading-splash">
+      <div id="loading-splash-spinner" />
+      <p>Loading, please wait...</p>
+    </div>
   );
 }
