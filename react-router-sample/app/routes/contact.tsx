@@ -3,7 +3,11 @@ import { getContact, type ContactRecord } from "../data";
 import type { Route } from "../+types/root";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const contact = await getContact(params.contactId);
+  const contactId = params.contactId;
+  if (!contactId) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  const contact = await getContact(contactId);
   if (!contact) {
     throw new Response("Not Found", { status: 404 });
   }
